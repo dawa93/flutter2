@@ -8,12 +8,19 @@ import 'package:flutter/material.dart';
 
 import '../../common/component/custom_text_form_field.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(BuildContext context) {
     final dio = Dio();
+    String id = '';
+    String password = '';
 
     // localhost
     const emulatorIp = '10.0.2.2:3000';
@@ -47,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                   hintText: '이메일을 입력해주세요',
                   obscureText: false,
                   onChangeed: (String value) {
-                    print(value);
+                    id = value;
                   },
                 ),
                 const SizedBox(
@@ -57,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                   obscureText: true,
                   hintText: '비밀번호를 입력해주세요',
                   onChangeed: (String value) {
-                    print(value);
+                    password = value;
                   },
                 ),
                 const SizedBox(
@@ -65,7 +72,9 @@ class LoginScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    const rawString = 'test@codefactory.ai:testtest';
+                    final rawString = '$id:$password';
+                    print(rawString);
+
                     Codec<String, String> stringToBase64 = utf8.fuse(
                         base64); // <String, String> 은 String을 받고, String을 반환한다는 의미
                     String token = stringToBase64.encode(rawString);
