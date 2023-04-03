@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:app/common/const/colors.dart';
+import 'package:app/common/const/data.dart';
 import 'package:app/common/layout/default_layout.dart';
 import 'package:app/common/view/root_tab.dart';
 import 'package:dio/dio.dart';
@@ -85,13 +86,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     );
 
+                    final refreshToken = res.data['refreshToken'];
+                    final accessToken = res.data['accessToken'];
+                    await storage.write(
+                        key: REFRESH_TOKEN, value: refreshToken);
+                    await storage.write(key: ACCESS_TOKEN, value: accessToken);
+
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => const RootTab(),
                       ),
                     );
-
-                    print(res.data);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: PRIMARY_COLOR,
