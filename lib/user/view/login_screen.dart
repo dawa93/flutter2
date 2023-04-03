@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:app/common/const/colors.dart';
 import 'package:app/common/layout/default_layout.dart';
+import 'package:app/common/view/root_tab.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -73,8 +74,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () async {
                     final rawString = '$id:$password';
-                    print(rawString);
-
                     Codec<String, String> stringToBase64 = utf8.fuse(
                         base64); // <String, String> 은 String을 받고, String을 반환한다는 의미
                     String token = stringToBase64.encode(rawString);
@@ -83,6 +82,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       'http://$ip/auth/login',
                       options: Options(
                         headers: {'authorization': 'Basic $token'},
+                      ),
+                    );
+
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const RootTab(),
                       ),
                     );
 
