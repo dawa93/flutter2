@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:app/common/const/colors.dart';
 import 'package:app/common/const/data.dart';
@@ -23,11 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
     final dio = Dio();
     String id = '';
     String password = '';
-
-    // localhost
-    const emulatorIp = '10.0.2.2:3000';
-    const simulatorIp = '127.0.0.1:3000';
-    final ip = Platform.isIOS ? simulatorIp : emulatorIp;
 
     return DefaultLayout(
       child: SingleChildScrollView(
@@ -104,18 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Text('로그인'),
                 ),
                 TextButton(
-                  onPressed: () async {
-                    const refreshToken =
-                        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RAY29kZWZhY3RvcnkuYWkiLCJzdWIiOiJmNTViMzJkMi00ZDY4LTRjMWUtYTNjYS1kYTlkN2QwZDkyZTUiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTY4MDUzMDMyMywiZXhwIjoxNjgwNjE2NzIzfQ.EajXqxa14Dac-0rKZWj9-dGkRATH91RcPwVKYpH6KqM';
-                    final res = await dio.post(
-                      'http://$ip/auth/token',
-                      options: Options(
-                        headers: {'authorization': 'Bearer $refreshToken'},
-                      ),
-                    );
-
-                    print(res.data);
-                  },
+                  onPressed: () async {},
                   style: TextButton.styleFrom(foregroundColor: PRIMARY_COLOR),
                   child: const Text('회원가입'),
                 )
