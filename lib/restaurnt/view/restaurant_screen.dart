@@ -1,5 +1,6 @@
 import 'package:app/common/const/data.dart';
 import 'package:app/restaurnt/component/restaurant_card.dart';
+import 'package:app/restaurnt/model/restaurant_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -37,19 +38,10 @@ class RestaurantScreen extends StatelessWidget {
               itemCount: snapshot.data!.length,
               itemBuilder: (_, index) {
                 final item = snapshot.data![index];
+                final pItem = RestaurantModel.fromJson(json: item);
 
-                return RestaurantCard(
-                  img: Image.network(
-                    'http://$ip${item['thumbUrl']}',
-                    fit: BoxFit.cover,
-                  ),
-                  name: item['name'],
-                  tags: List<String>.from(item[
-                      'tags']), // List<dynamic> 에러가 나올때, 해결하는 방법 => List<String>.from(item)
-                  ratingsCount: item['ratingsCount'],
-                  deliveryTime: item['deliveryTime'],
-                  deliveryFee: item['deliveryFee'],
-                  ratings: item['ratings'],
+                return RestaurantCard.fromModel(
+                  model: pItem,
                 );
               },
               separatorBuilder: (_, index) {
