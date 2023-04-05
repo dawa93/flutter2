@@ -5,20 +5,20 @@ class RestaurantCard extends StatelessWidget {
   final Widget img; // 레스토랑 이미지
   final String name; // 레스토랑 이름
   final List<String> tags; // 레스토랑 태그
-  final int ratingCount; // 평점 갯수
+  final int ratingsCount; // 평점 갯수
   final int deliveryTime; //  배송시간
   final int deliveryFee; //  배송비
-  final double rating; // 평점
+  final double ratings; // 평점
 
   const RestaurantCard({
     super.key,
     required this.img, // 레스토랑 이미지
     required this.name, // 레스토랑 이름
     required this.tags, // 레스토랑 태그
-    required this.ratingCount, // 평점 갯수
+    required this.ratingsCount, // 평점 갯수
     required this.deliveryTime, //  배송시간
     required this.deliveryFee, //  배송비
-    required this.rating, // 평점
+    required this.ratings, // 평점
   });
 
   @override
@@ -58,9 +58,9 @@ class RestaurantCard extends StatelessWidget {
             ),
             Row(
               children: [
-                _IconText(icon: Icons.star, label: rating.toString()),
+                _IconText(icon: Icons.star, label: ratings.toString()),
                 renderDot(),
-                _IconText(icon: Icons.receipt, label: ratingCount.toString()),
+                _IconText(icon: Icons.receipt, label: ratingsCount.toString()),
                 renderDot(),
                 _IconText(
                     icon: Icons.timelapse_outlined, label: '$deliveryTime분'),

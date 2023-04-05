@@ -5,6 +5,6 @@ const ACCESS_TOKEN = 'ACCESS_TOKEN';
 const REFRESH_TOKEN = 'REFRESH_TOKEN';
 const storage = FlutterSecureStorage();
 // localhost
-const emulatorIp = '10.0.2.2:56231';
-const simulatorIp = '127.0.0.1:56231';
+const emulatorIp = '10.0.2.2:3000';
+const simulatorIp = '127.0.0.1:3000';
 final ip = Platform.isIOS ? simulatorIp : emulatorIp;
